@@ -2,6 +2,8 @@
 
 This project is a chatbot interface developed using Flask and JavaScript. The chatbot uses OpenAI's GPT-4 model to interact with users.
 
+![Chatbot Interface](images/screenshot.png)
+
 ## Features
 
 - Chat interface with a modern design
