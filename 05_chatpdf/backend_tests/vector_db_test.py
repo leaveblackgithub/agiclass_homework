@@ -12,12 +12,13 @@ def write_test_search_txt(file_query_dict,top_n=2):
 
 test_vd_connector_name="test_vd_connector"
 test_vd_connector_resplit_name=add_resplit_suffix(test_vd_connector_name)
-chromadb_path=os.path.join(CURRENT_DIR,"chromadb")
+chromadb_path=get_dir(TEMP_ROOT,"chromadb")
+# print (get_dir(TEMP_ROOT,"chromadb"))
 
 def get_test_vd_connector():    
     global test_vd_connector
     from txt_parser_test import get_test_paragraphs_from_txt
-    from text_embedding_openai import get_embeddings
+    from text_embedding_ai00 import get_embeddings
     if test_vd_connector_name not in globals():
         test_vd_connector=MyVectorDBConnector(get_embeddings,chromadb_path,test_vd_connector_name)
         test_vd_connector.add_documents(get_test_paragraphs_from_txt())
@@ -26,7 +27,7 @@ def get_test_vd_connector():
 def get_test_vd_connector_resplit():  
     global test_vd_connector_resplit
     from txt_parser_test import get_test_paragraphs_from_txt_resplit
-    from text_embedding_openai import get_embeddings
+    from text_embedding_ai00 import get_embeddings
     if test_vd_connector_resplit_name not in globals():
         test_vd_connector_resplit=MyVectorDBConnector(get_embeddings,chromadb_path,test_vd_connector_resplit_name)
         test_vd_connector_resplit.add_documents(get_test_paragraphs_from_txt_resplit())
@@ -43,6 +44,6 @@ def test_es_search():
     pass
 
 if __name__ == '__main__':
-    query_list=[safety_chn]#conversation_variant]#,
+    query_list=[safety_chn,conversation_variant]
     write_test_search_txt({f:q for (f,q) in test_querys.items() if f in query_list},5)
     pass

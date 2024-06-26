@@ -1,7 +1,7 @@
 from __init import *
 import vector_db_test as vt
 import es_search_test as et
-from talk_to_gpt_4o_test import get_completion
+from talk_to_rwkv_ai00 import get_completion
 from rag_bot import RAG_Bot
 import pytest
 import os
@@ -37,13 +37,13 @@ def get_test_bot(search_type=es_search,is_resplit=False):
     # print( get_vector_bot().chat_after_search(test_query_commercial_license,5))
 
 if __name__ == "__main__":
-    # test_es_bot=get_test_bot()
-    # print(test_es_bot.chat_after_search(test_querys[llama2_parameters],2))
-    # print(test_es_bot.chat_after_search(test_querys[conversation_variant],2))
-    # test_es_bot_resplit=get_test_bot(es_search,True)
-    # print(test_es_bot_resplit.chat_after_search(test_querys[conversation_variant],2))
-    # test_vd_bot=get_test_bot(vd_search)
-    # print(test_vd_bot.chat_after_search(test_querys[conversation_variant],2))
+    test_ws_bot=get_test_bot(ws_search)
+    print(test_ws_bot.chat_after_search(test_querys[llama2_parameters],2))
+    print(test_ws_bot.chat_after_search(test_querys[conversation_variant],2))
+    test_ws_bot_resplit=get_test_bot(ws_search,True)
+    print(test_ws_bot_resplit.chat_after_search(test_querys[conversation_variant],2))
+    test_vd_bot=get_test_bot(vd_search)
+    print(test_vd_bot.chat_after_search(test_querys[conversation_variant],2))
     test_vd_bot_resplit=get_test_bot(vd_search,True)
     print(test_vd_bot_resplit.chat_after_search(test_querys[safety_chn],5))
     print(test_vd_bot_resplit.chat_after_reranker(test_querys[safety_chn],[5,5]))

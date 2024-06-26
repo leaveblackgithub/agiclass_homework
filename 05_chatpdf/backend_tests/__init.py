@@ -30,7 +30,15 @@ test_querys={llama2_parameters:"how many parameters does llama 2 have?",
 
 es_search="es_search"
 vd_search="vd_search"
-wh_search="wh_search"
+ws_search="ws_search"
+
+def get_dir(root_folder,*args):
+    from pathlib import Path
+    if not Path(Path(root_folder).root).exists(): 
+        raise ValueError("Root Drive not exists")      
+    result=os.path.join(root_folder,*args)
+    Path(result).mkdir(parents=True, exist_ok=True)
+    return result
 
 def get_query_key(query):
     return [k for k,v in test_querys.items() if v==query][0]
@@ -42,15 +50,14 @@ def add_resplit_suffix(content):
     return content+"_resplit"  
 
 def add_ws_search_suffix(content):
-    return content+"_ws_search"
+    return content+"_"+ws_search
 
 def add_es_search_suffix(content):
-    return content+"_es_search"
+    return content+"_"+es_search 
 
 
 def add_vd_search_suffix(content):
-    return content+"_vd_search"
-
+    return content+"_"+vd_search
 
 
 

@@ -44,7 +44,7 @@ class RAG_Bot:
 
     def chat(self):
         if self.search_results==None:
-            return "请先调用search方法"
+            raise RuntimeError( "请先调用search方法")
         self.build_prompt(context=self.search_results, query=self.user_query)
         self.response = self.llm_api(self.prompt)
         return self.response

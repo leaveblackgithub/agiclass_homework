@@ -1,18 +1,6 @@
-import numpy as np
-from numpy import dot
-from numpy.linalg import norm
 import os
 from environment_import import client,OpenAI
-
-def cos_sim(a, b):
-    '''余弦距离 -- 越大越相似'''
-    return dot(a, b)/(norm(a)*norm(b))
-
-
-def l2(a, b):
-    '''欧氏距离 -- 越小越相似'''
-    x = np.asarray(a)-np.asarray(b)
-    return norm(x)
+from numpy_dist import l2,cos_sim
 
 def get_embeddings(texts, model="text-embedding-ada-002", dimensions=None):
     '''封装 OpenAI 的 Embedding 模型接口'''

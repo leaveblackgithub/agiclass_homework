@@ -10,13 +10,14 @@ import chromadb
 from chromadb.config import Settings
 
 class MyVectorDBConnector:
-    def __init__(self, embedding_fn, persist_directory, collection_name="demo"):
+    def __init__(self, embedding_fn, persist_directory, collection_name="demo",distance="euclidean"):
         self.embedding_fn = embedding_fn
         self.persist_directory = persist_directory
         self.collection_name = collection_name
         self.client = chromadb.PersistentClient(path=persist_directory, settings=Settings(allow_reset=True))
         # self.client.reset()
-        self.collection = self.client.get_or_create_collection(name=collection_name)
+        if distance=="cosine":        self.collection = self.client.get_or_create_collection(name=collection_name,metadata={"hnsw:space": "l2"})
+        else:        self.collection = self.client.get_or_create_collection(name=collection_name)
     
     def add_documents(self, documents):
         # 检查并过滤已经存在的文档
@@ -69,9 +70,10 @@ class MyVectorDBConnector:
 
 if __name__ == "__main__":
     
-    from text_embedding_openai import get_embeddings
+    from text_embedding_ai00 import get_embeddings
+    from environment_import import TEMP_ROOT
     import os
-    chromadb_path=os.path.join(os.path.dirname(os.path.abspath(__file__)),"chromadb")
+    chromadb_path=os.path.join(TEMP_ROOT,"chromadb")
     test_vd_connector=MyVectorDBConnector(get_embeddings,chromadb_path,"DEMO")
     paragraphs = ["你好，世界！", "这是一个中文句子。"]
     test_vd_connector.add_documents(paragraphs)
