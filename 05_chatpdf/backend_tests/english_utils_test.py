@@ -4,7 +4,7 @@ import pytest
 def test_english_utils():
     # 测试关键词提取
     assert to_keywords("John works at Google. He is a software engineer.")== "john work googl softwar engin"
-    assert split_text(["John works at Google. He is a software engineer."]) ==['John works at Google. He is a software engineer.']
+    assert split_text(["John works at Google. He is a software engineer."],300,100) ==['John works at Google. He is a software engineer.']
     from txt_parser_test import get_test_paragraphs_from_txt
     txt_paragraphs = get_test_paragraphs_from_txt()
     txt_paragraphs_resplit=split_text(txt_paragraphs)

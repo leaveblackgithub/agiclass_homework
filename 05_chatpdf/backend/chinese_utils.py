@@ -3,7 +3,7 @@ import jieba
 import nltk
 from nltk.corpus import stopwords
 
-nltk.download('stopwords')  
+#nltk.download('stopwords')  
 
 def to_keywords(input_string):
     """将句子转成检索关键词序列"""
@@ -22,6 +22,10 @@ def sent_tokenize(input_string):
     # 去掉空字符串
     return [sentence for sentence in sentences if sentence.strip()]
 
+
+def split_text(paragraphs, chunk_size=300, overlap_size=100):
+    from text_resplit import split_text
+    return split_text(paragraphs,sent_tokenize, chunk_size=chunk_size, overlap_size=overlap_size)
     
 if "__main__" == __name__:
     # 测试关键词提取

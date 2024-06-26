@@ -1,13 +1,18 @@
 import os
 from __init import *
-from english_utils import split_text
+from english_utils import split_text as english_split_text
+from chinese_utils import split_text as chinese_split_text
 import pytest
 
 def write_pdf_paragraphs_to_txt():
     from pdf_parser_test import get_test_paragraphs_from_pdf
     test_paragraphs=get_test_paragraphs_from_pdf()
-    test_paragraphs_resplit=split_text(test_paragraphs)
+    test_paragraphs_resplit=english_split_text(test_paragraphs)
     write_test_txt(test_original_file_name, test_paragraphs,test_paragraphs_resplit)
+    test_paragraphs=get_test_paragraphs_from_pdf(True)
+    test_paragraphs_resplit=chinese_split_text(test_paragraphs)
+    write_test_txt(test_original_file_chn_name, test_paragraphs,test_paragraphs_resplit)
+
 
 
 def write_test_txt(file_name, data,data_resplit):
@@ -100,7 +105,7 @@ def test_test_search_connector():
 #     assert paragraphs[2] == get_test_paragraphs()[2]
 
 if __name__ == '__main__':
-    # write_pdf_paragraphs_to_txt()
+    write_pdf_paragraphs_to_txt()
     # print(len(get_test_paragraphs_from_txt()))
     # print(len(get_test_paragraphs_from_txt_resplit()))
-    print (get_test_search_txt(llama2_parameters,es_search))
+    # print (get_test_search_txt(llama2_parameters,es_search))

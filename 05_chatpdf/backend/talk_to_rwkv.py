@@ -24,7 +24,7 @@ def get_completion(content):
         ],
         "model": "rwkv",
         "presence_penalty": 0,
-        "presystem": True,
+        "presystem": False,
         "stream": False,
         "temperature": 1,
         "top_p": 0.3
@@ -36,12 +36,12 @@ def get_completion(content):
     # 检查响应状态码
     if response.status_code == 200:
         # 提取并返回choices的message的content字段
-        return response.json()['choices'][0]['message']['content']
+        return response.json()#['choices'][0]['message']['content']
     else:
         # 处理错误情况
         return f"Error: {response.status_code} - {response.text}"
 
-# # 示例调用
-# content = "讲个笑话吧"
-# completion = get_completion(content)
-# print(completion)
+# 示例调用
+content = "讲个笑话吧"
+completion = get_completion(content)
+print(completion)
