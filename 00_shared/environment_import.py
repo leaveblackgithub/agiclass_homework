@@ -1,5 +1,3 @@
-
-from openai import OpenAI
 import os
 from dotenv import load_dotenv
 # 从系统参数位置加载 .env 文件
@@ -10,6 +8,8 @@ load_dotenv(dotenv_path=env_path)
 #_ = load_dotenv(find_dotenv())
 
 # client = OpenAI()
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+OPENAI_BASE_URL = os.getenv('OPENAI_BASE_URL')
 ELASTICSEARCH_BASE_URL =  os.getenv('ELASTICSEARCH_BASE_URL')
 ELASTICSEARCH_PASSWORD = os.getenv('ELASTICSEARCH_PASSWORD')
 ELASTICSEARCH_NAME= os.getenv('ELASTICSEARCH_NAME')

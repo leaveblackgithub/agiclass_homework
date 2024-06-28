@@ -4,14 +4,18 @@ import os
 CURRENT_DIR=os.path.dirname(os.path.abspath(__file__)) #表示当前路径
 BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__))) #表示上一级目录
 sys.path.insert(0,os.path.join(BASE_DIR,"backend"))  #也可以用os.path.join(BASE_DIR,'/lib/server')
+AGI_BASE=os.getenv("AGI_BASE")
+sys.path.insert(0,os.path.join(AGI_BASE,"00_shared")) 
 # from backend import *
 from environment_import import *
 
+llama2="llama2"
+hanyu_1_2="现代汉语（一二）-语音"
 test_original_file_name="llama2"
 
-test_original_file_chn_name="现代汉语（一二）-语音"
-test_pdf_name=test_original_file_name+".pdf"
-test_pdf_chn_name=test_original_file_chn_name+".pdf"
+es_search="es_search"
+vd_search="vd_search"
+ws_search="ws_search"
 
 llama2_parameters="llama2_parameters"
 conversation_variant="conversation_variant"
@@ -19,18 +23,6 @@ chat_version="chat_version"
 commercial_license="commercial_license"
 safety="safety"
 safety_chn="safety_chn"
-
-test_querys={llama2_parameters:"how many parameters does llama 2 have?",
-             conversation_variant:"Does llama 2 have a chat version?",
-             chat_version:"Does llama 2 have a conversational variant?",
-             commercial_license:"Does llama 2 have a commercial license?",
-             safety:"how safe is llama 2",
-             safety_chn:"llama 2安全性如何"}
-
-
-es_search="es_search"
-vd_search="vd_search"
-ws_search="ws_search"
 
 def get_dir(root_folder,*args):
     from pathlib import Path
@@ -40,24 +32,15 @@ def get_dir(root_folder,*args):
     Path(result).mkdir(parents=True, exist_ok=True)
     return result
 
-def get_query_key(query):
-    return [k for k,v in test_querys.items() if v==query][0]
+def get_pdf_path(file_name):
+    return os.path.join(RESOURCE_ROOT, file_name+".pdf")
 
 def get_txt_path(file_name):
-    return os.path.join(TEMP_ROOT, file_name+".txt")    
+    return os.path.join(TEMP_ROOT, file_name+".txt") 
 
 def add_resplit_suffix(content):
-    return content+"_resplit"  
+    return "_".join(content, "resplit")
 
-def add_ws_search_suffix(content):
-    return content+"_"+ws_search
-
-def add_es_search_suffix(content):
-    return content+"_"+es_search 
-
-
-def add_vd_search_suffix(content):
-    return content+"_"+vd_search
 
 
 

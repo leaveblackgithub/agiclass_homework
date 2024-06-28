@@ -1,3 +1,4 @@
+###TODO: ADD CHINESE DOCUMENTS
 import os
 from __init import *
 from english_utils import split_text as english_split_text
@@ -31,7 +32,7 @@ def get_test_txt_resplit(file_name):
     return read_from_txt(get_txt_path(add_resplit_suffix(file_name)))
 
 
-def get_test_paragraphs_from_txt():
+def get_test_paragraphs_from_txt(is_chinese=False,is_resplit=False):
     test_paragraphs_name="test_paragraphs"
     global test_paragraphs
     if test_paragraphs_name not in globals():
