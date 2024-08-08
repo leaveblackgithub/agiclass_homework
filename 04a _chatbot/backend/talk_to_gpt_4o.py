@@ -1,15 +1,11 @@
 
 from openai import OpenAI
 import os
-from dotenv import load_dotenv, find_dotenv
+from __init__ import *
 
-# 从系统参数位置加载 .env 文件
-env_path = os.getenv('ENV_PATH')
-load_dotenv(dotenv_path=env_path)
-# 从本地加载.env文件
-#_ = load_dotenv(find_dotenv())
 
-client = OpenAI()
+#把key和url换成自己的明文key和url先试试能不能运行，不要翻墙
+client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_BASE_URL)
 
 # 定义消息历史。先加入 system 消息，里面放入对话内容以外的 prompt
 messages = [
@@ -39,10 +35,6 @@ def get_completion(prompt, model="gpt-4o"):
     messages.append({"role": "assistant", "content": msg})
     return msg
 
-
-
-
-
-
 if __name__ == '__main__':
-    print(get_completion("你好"))
+    print(get_completion("你的供应商是谁"))
+

@@ -19,7 +19,9 @@ MS_MARCO_MINILM_L_6_V2= os.path.join(MODEL_ROOT, "ms-marco-MiniLM-L-6-v2")
 BGE_RERANKER_LARGE= os.path.join(MODEL_ROOT,"BAAI", "bge-reranker-large")
 RESOURCE_ROOT= os.getenv('RESOURCE_ROOT')
 TEMP_ROOT= os.getenv('TEMP_ROOT')
-
+SILICONFLOW_API_KEY= os.getenv('SILICONFLOW_API_KEY')
+SILICONFLOW_API_BASE= os.getenv('SILICONFLOW_API_BASE')
+DEEP_SEEK_DEFAULT_MODEL= os.getenv('DEEP_SEEK_DEFAULT_MODEL')
 if "__main__" == __name__:
     print(env_path)
     print(BGE_RERANKER_LARGE)

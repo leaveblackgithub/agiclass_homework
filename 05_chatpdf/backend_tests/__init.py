@@ -39,7 +39,7 @@ def get_txt_path(file_name):
     return os.path.join(TEMP_ROOT, file_name+".txt") 
 
 def add_resplit_suffix(content):
-    return "_".join(content, "resplit")
+    return "_".join([content, "resplit"])
 
 
 

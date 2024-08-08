@@ -3,12 +3,12 @@ from es_search import MyEsConnector
 import pytest
 import os
 
-def write_test_search_txt(file_query_dict,top_n=2):
-    from txt_parser_test import write_test_txt,add_es_search_suffix
-    for (filename,query) in file_query_dict.items():
-        write_test_txt(add_es_search_suffix(filename),
-                       get_test_es_connector().search(query, top_n), 
-                       get_test_es_connector_resplit().search(query, top_n))
+# def write_test_search_txt(file_query_dict,top_n=2):
+#     from txt_parser_test import write_test_txt
+#     for (filename,query) in file_query_dict.items():
+#         write_test_txt(add_es_search_suffix(filename),
+#                        get_test_es_connector().search(query, top_n), 
+#                        get_test_es_connector_resplit().search(query, top_n))
 
 test_es_connector_name="test_es_connector"
 test_es_connector_resplit_name=add_resplit_suffix(test_es_connector_name)
@@ -40,8 +40,9 @@ def test_es_search():
 
 
 if __name__ == '__main__':
-    query_list=[llama2_parameters,conversation_variant]
-    write_test_search_txt({f:q for (f,q) in test_querys.items() if f in query_list},5)
+    from test_data import *
+    test_es_connector=get_test_es_connector()
+    print(test_es_connector.search(TestData().query_str(llama2_parameters), 2))
     pass
     # write_test_txt(test_txt_name_of_llmas2_parameters,test_query_of_conversation_variant,2)
     # print(len(get_test_txt(test_txt_name_of_llmas2_parameters)))
